@@ -40,7 +40,7 @@ void loop() {
   float tempdelta = (end-begin);
   float delta = tempdelta/1000;
 
-  counter += delta;
+  counter = (float(millis())/1000) - delta;
 }
 
 void showOLEDMsg(String line1, String line2, String line3) {
