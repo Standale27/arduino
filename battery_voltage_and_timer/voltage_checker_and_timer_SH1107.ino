@@ -65,7 +65,7 @@ void batteryIndicator(float battpercent) {
 
   display.fillRect(11, 13, 102, 13, 0);
   if(battpercent < 100) {
-    display.fillRect(12, 14, int(battpercent)+2, 11, 1);
+    display.fillRect(12, 14, int(battpercent), 11, 1);
   }
   if(battpercent >= 100) {
     display.fillRect(12, 14, 100, 11, 1);
