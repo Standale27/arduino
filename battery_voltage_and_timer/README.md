@@ -4,4 +4,5 @@ Timer should be accurate since it utilizes millis() rather than delay().
 
 Specifically made for an AdaFruit SSD1306 0.93" monochrome OLED display. Connects to display via I2C protocol.
 
-Future work would be to add a version meant to use an SH1107 128x128 monochrome OLED display, and to add graphics (like a bar which depletes as the battery percentage drops)
+Version for the SH1107 has been made, includes a battery bar that should deplete along with the battery percentage.
+![Uploading image (10).png…]()
