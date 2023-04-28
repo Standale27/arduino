@@ -6,4 +6,4 @@ Specifically made for an AdaFruit SSD1306 0.93" monochrome OLED display. Connect
 
 Version for the SH1107 (PIM374 from Pimoroni, 1.12" 128x128 monochrome OLED) has been made, includes a battery bar that should deplete along with the battery percentage.
 
-![SH1107 w/ Battery Bar]([https://i.imgur.com/As4Aw2h.png])
+https://i.imgur.com/As4Aw2h.png
