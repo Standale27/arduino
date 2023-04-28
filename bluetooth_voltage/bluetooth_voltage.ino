@@ -65,14 +65,15 @@ void loop() {
   float tempdelta = (end-begin);
   float delta = tempdelta/1000;
 
-  counter += delta;
+  counter = (float(millis())/1000) - delta;
+
 }
 
 void batteryInfo() {
   float percentSum = 0;   //Used for calculating moving averages
   float voltageSum = 0;
 
-  for(int i = 0; i < 99; i++) {   //Take 100 samples of A13 and calculate battery voltage and perecentage, keep track of sum
+  for(int i = 0; i < 100; i++) {   //Take 100 samples of A13 and calculate battery voltage and perecentage, keep track of sum
     batCalc();
     percentSum += (battFrac * 100);
     voltageSum += voltLev;
