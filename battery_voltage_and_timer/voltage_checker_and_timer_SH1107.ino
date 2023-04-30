@@ -9,18 +9,18 @@
 
 Adafruit_SH1107 display = Adafruit_SH1107(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET, 1000000, 100000);
 
-const float MAX_ANALOG_VAL = 4095;
-const float MAX_BATTERY_VOLTAGE = 4.2;
+const float MAX_ANALOG_VAL = 4095;      //Pin A13 is internally tied to the battery and is associated with the battery voltage.
+const float MAX_BATTERY_VOLTAGE = 4.2;  //Realistically, the actual max analog value that will be read will be ~2430
 
-float counter = 0;
-float rawValue;
+float counter = 0;    //Used to keep track of the runtime
+float rawValue;       //These 3 are used to determine the battery percentage and voltage
 float voltageLevel;
 float batteryFrac;
 
 void setup() {
   Serial.begin(115200);
   delay(250);
-  display.begin(0x3C, true);
+  display.begin(0x3C, true);    //Initialization. The AdaFruit splash screen is hardcoded into begin, and using display() followed by a delay and a clear allows for it to show up
   display.display();
   delay(1000);
   display.clearDisplay();
@@ -29,45 +29,41 @@ void setup() {
 
 void loop() {
   long begin = millis();
-  display.clearDisplay();
 
-  showOLEDMsg(counter);
-  showBattery(voltageLevel, (batteryFrac * 100));
-  batteryIndicator(batteryFrac*100);
+  display.clearDisplay();
+  showOLEDMsg(counter);                                   //Displays the runtime in seconds
+  showBattery(voltageLevel, (batteryFrac * 100));         //Shows the battery voltage and percentage in text
+  batteryIndicator(constrain((batteryFrac*100),0,100));   //Shows the filling/depleting battery graphically
   display.display();
+
   long end = millis();
   float tempdelta = (end-begin);
   float delta = tempdelta/1000;
-  counter = (float(millis())/1000) - delta;
-}
+  counter = (float(millis())/1000) - delta;               //Amended timekeeping solution. Basically allows for counter to increment without taking into account the delta time req to run the code.
+}                                                         //Seems accurate, but further testing would help to confirm this
 
-void showOLEDMsg(float time) {
+void showOLEDMsg(float time) {                            //Very simple. Prints the runtime in a specific format to a specific position
   display.setTextSize(1);
   display.setCursor(0, 110);
   display.printf("Runtime:\n%.1f sec", time);
 }
 
-void showBattery(float voltage, float percent) {
+void showBattery(float voltage, float percent) {          //Logic to determine battery voltage and percentage. Notably, utilizes the constrain func to show a 0-100% correlated to 3.5V-4.2V. Prints the text too.
   rawValue = analogRead(A13);
   voltageLevel = (rawValue/MAX_ANALOG_VAL)*2*1.1*3.3;
-  batteryFrac = voltageLevel / MAX_BATTERY_VOLTAGE;
+  batteryFrac = constrain((voltageLevel-3.5),0,0.7) / (MAX_BATTERY_VOLTAGE-3.5);
 
   display.setTextSize(1);
   display.setCursor(0, 0);
   display.printf("Voltage:  %.3fV/4.2V\n\n\n\n   Battery:%.2f%%", voltage, percent);
 }
 
-void batteryIndicator(float battpercent) {
+void batteryIndicator(float battpercent) {                //Draws shapes to show an empty battery, along with a bar that changes in width depending on the battery percentage
   display.drawRoundRect(8, 10, 108, 19, 3, 1);
   display.fillRoundRect(8, 10, 108, 19, 3, 1);
   display.fillRoundRect(116, 15, 4, 8, 2, 1);
   display.fillRect(116, 15, 3, 8, 1);
 
   display.fillRect(11, 13, 102, 13, 0);
-  if(battpercent < 100) {
-    display.fillRect(12, 14, int(battpercent), 11, 1);
-  }
-  if(battpercent >= 100) {
-    display.fillRect(12, 14, 100, 11, 1);
-  }
+  display.fillRect(12, 14, int(battpercent), 11, 1);
 }
