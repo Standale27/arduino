@@ -11,6 +11,7 @@ Battery percentage now goes from 0-100% and is correlated to a range of 3.5-4.2V
 https://i.imgur.com/As4Aw2h.png
 
 Update 11/12/23
+
 Back in April, I added an Adafruit FeatherWing OLED display (SH1107, 1.3", 128x64 monochrome OLED) to the Adafruit Huzzah32 ESP32 Feather. It comes with three buttons as well as an additional reset button.
 I mounted the Feather + FeatherWing to a mini-breadboard along with a 420 mAh LiPo battery.
 Later on, I soldered in an on/off switch to easily open and close the connection from the battery to the ESP32.
