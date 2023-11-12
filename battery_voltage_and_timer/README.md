@@ -16,10 +16,10 @@ I mounted the Feather + FeatherWing to a mini-breadboard along with a 420 mAh Li
 Later on, I soldered in an on/off switch to easily open and close the connection from the battery to the ESP32.
 I 3D printed a housing for the assembly in Fusion 360, and added a lid/cover to slide over the top. There are holes and gaps to allow access to the buttons on the FeatherWing and the connection points on the breadboard respectively.
 
-Top view in housing:                   https://i.imgur.com/p6WUQPt.png
-Top view in housing with open lid:     https://i.imgur.com/iCJkVXJ.png
-Side view in housing:                  https://i.imgur.com/uTqC4Ky.png
-Side view without housing:             https://i.imgur.com/hhfqqBR.png
+>Top view in housing:                   https://i.imgur.com/p6WUQPt.png
+>Top view in housing with open lid:     https://i.imgur.com/iCJkVXJ.png
+>Side view in housing:                  https://i.imgur.com/uTqC4Ky.png
+>Side view without housing:             https://i.imgur.com/hhfqqBR.png
 
 Lastly, I updated the voltage checker and timer code:
 
