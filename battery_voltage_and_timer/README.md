@@ -13,8 +13,11 @@ https://i.imgur.com/As4Aw2h.png
 Update 11/12/23
 
 Back in April, I added an Adafruit FeatherWing OLED display (SH1107, 1.3", 128x64 monochrome OLED) to the Adafruit Huzzah32 ESP32 Feather. It comes with three buttons as well as an additional reset button.
+
 I mounted the Feather + FeatherWing to a mini-breadboard along with a 420 mAh LiPo battery.
+
 Later on, I soldered in an on/off switch to easily open and close the connection from the battery to the ESP32.
+
 I 3D printed a housing for the assembly in Fusion 360, and added a lid/cover to slide over the top. There are holes and gaps to allow access to the buttons on the FeatherWing and the connection points on the breadboard respectively.
 
 >Top view in housing:                   [https://i.imgur.com/p6WUQPt.png](https://i.imgur.com/p6WUQPt.png)
